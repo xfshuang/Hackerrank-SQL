@@ -1,4 +1,4 @@
-~Asian Population 
+~Asian Population~ 
 select sum(ct.population) from 
 city as ct join country as cy
 on Ct.CountryCode = CY.Code 
@@ -6,28 +6,29 @@ where continent = 'Asia'
 
 
 
-~African Cities
+~African Cities~
 select city.name from city, country 
 where cITY.CountryCode = COUNTRY.Code and continent ='Africa'
 
 
-~Average population of Each Continent
-'''select country.continent, round(avg(city.population))
-from city join country 
-on CITY.CountryCode and COUNTRY.Code '''
 
+~Average population of Each Continent~
 select country.continent, floor(avg(city.population))
 from city join country 
 on cITY.countryCode = COUNTRY.Code 
 group by country.continent
 
-~The Report
+
+
+~The Report~
 select if (grades.grade > 7, students.name, null), grades.grade, students.marks 
 from students, grades
 where students.marks between grades.min_mark and grades.max_mark
 order by grades.grade desc, students.name asc;
 
-~Top Competitors
+
+
+~Top Competitors~
 select h.hacker_id, h.name
 from hackers as h
 join submissions as s on h.hacker_id = s.hacker_id
@@ -39,7 +40,7 @@ having count(h.hacker_id) > 1
 order by count(h.hacker_id) desc, h.hacker_id asc;
 
 
-~Ollivander's Inventory
+~Ollivander's Inventory~
 select w.id, wp.age, w.coins_needed, w.power 
 from wands as w join wands_property as wp
 on w.code =wp.code 
@@ -50,9 +51,11 @@ order by power desc, age desc;
 
 
 
-~Challenges
+~Challenges~
 
-~Contest Leaderboard
+
+
+~Contest Leaderboard~
 select h.hacker_id, name, sum(score) as total_score
 from
 hackers as h inner join
@@ -69,7 +72,9 @@ having total_score > 0
 order by total_score desc, h.hacker_id
 
 
-~Placements
+
+
+~Placements~
 Write a query to output the names of those students whose best friends got offered a higher salary than them. 
 SELECT
     d.name
