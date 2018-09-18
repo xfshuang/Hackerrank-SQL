@@ -1,54 +1,78 @@
 Basic Select
 
-~Revising the Select Query I
+~Revising the Select Query I~
 Select * from CITY where POPULATION > 100000
 and COUNTRYCODE = 'USA';
 
-~Revising the Select Query
+
+
+~Revising the Select Query~
 select name from CITY where POPULATION > 120000 and COUNTRYCODE = 'USA';
 
-~Select All
+
+
+~Select All~
 select * from CITY
 
-~Select By ID
+
+
+~Select By ID~
 Select * from city where ID = '1661'
 
-~Japanese Cities' Attributes
+
+
+~Japanese Cities' Attributes~
 Select * from City where COUNTRYCODE = 'JPN'
 
-~Japanese Cities' Names
+
+
+~Japanese Cities' Names~
 select name from city where countrycode = 'JPN'
 
-~Weather Observation Station 1
+
+
+~Weather Observation Station 1~
 select city, state from station 
 
-~Weather Observation Station 3
+
+
+~Weather Observation Station 3~
 select distinct city from station where id%2 =0
 
-~Weather Observation Station 4
+
+
+~Weather Observation Station 4~
 select count(city)- count(distinct(city))from Station
 
-~Weather Observation Station 5
+
+
+~Weather Observation Station 5~
 select CITY, length(CITY) from STATION order by length(city), CITY limit 1;
 select CITY, length(CITY) from STATION order by length(city) desc, CITY limit 1;
 
-~Weather Observation Station 6
+
+
+~Weather Observation Station 6~
 Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.
 select distinct CITY from STATION where (city like 'a%' 
                                          or city like 'e%'
                                          or city like 'i%'
                                          or city like 'o%'
                                          or city like 'u%')
-                                         
-~Weather Observation Station 7
+
+
+
+~Weather Observation Station 7~
 Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
 select distinct city from Station where (city like '%a'
                                         or city like '%e'
                                         or city like '%i'
                                         or city like '%o'
                                         or city like '%u')
-                                        
-~Weather Observation Station 8
+   
+   
+   
+~Weather Observation Station 8~
 Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o, and u) as both their first and last characters. Your result cannot contain duplicates.
 select distinct city from station where (city like 'a%'
                                         or city like 'e%'
@@ -61,30 +85,33 @@ select distinct city from station where (city like 'a%'
                                         or city like '%o'
                                         or city like '%u')
 
-~Weather Observation Station 9
+
+
+~Weather Observation Station 9~
 Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates
-'''select distinct city where NOT (city like 'a%'
-                           or city like 'e%'
-                           or city like 'i%'
-                           or city like 'o%'
-                           or city like 'u%')'''
-                           
+    
 select distinct city from station where city not like 'a%' 
 and city not like 'e%'
 and city not like 'i%'
 and city not like 'o%'
 and city not like 'u%'
 
-~Weather Observation Station 10
+
+
+~Weather Observation Station 10~
 Query the list of CITY names from STATION that do not end with vowels. Your result cannot contain duplicates.
+
 select distinct city from station where city not like '%a'
 and city not like '%e'
 and city not like '%i'
 and city not like '%o'
 and city not like '%u'
 
-~Weather Observation Station 11
+
+
+~Weather Observation Station 11~
 Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates.
+
 select distinct city from station where (city not like 'a%'
 and city not like 'e%'
 and city not like 'i%'
@@ -97,7 +124,9 @@ and city not like '%i'
 and city not like '%o'
 and city not like '%u')
 
-~Weather Observation Station 12 
+
+
+~Weather Observation Station 12~ 
 Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. Your result cannot contain duplicates.  
 select distinct city from station where (city not like 'a%'
                                         and city not like 'e%'
@@ -110,16 +139,25 @@ select distinct city from station where (city not like 'a%'
                                         and city not like '%o'
                                         and city not like '%u')  
 
-~Higher Than 75 Marks
+
+
+~Higher Than 75 Marks~
 Query the Name of any student in STUDENTS who scored higher than  Marks. 
+
 select name from students where marks >75
 order by substr(name,-3,3), ID asc;
 
-~Employee Names
+
+
+~Employee Names~
 Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
+
 select name from EMPLOYEE order by name asc
 
-~Employee Salaries
+
+
+~Employee Salaries~
 Write a query that prints a list of employee names (i.e.: the name attribute) for employees in Employee having a salary greater than  per month who have been employees for less than  months. 
+
 select name from employee where salary > 2000 and months < 10
 order by employee_id asc;                                   
