@@ -1,0 +1,84 @@
+~Asian Population 
+select sum(ct.population) from 
+city as ct join country as cy
+on Ct.CountryCode = CY.Code 
+where continent = 'Asia'
+
+
+
+~African Cities
+select city.name from city, country 
+where cITY.CountryCode = COUNTRY.Code and continent ='Africa'
+
+
+~Average population of Each Continent
+'''select country.continent, round(avg(city.population))
+from city join country 
+on CITY.CountryCode and COUNTRY.Code '''
+
+select country.continent, floor(avg(city.population))
+from city join country 
+on cITY.countryCode = COUNTRY.Code 
+group by country.continent
+
+~The Report
+select if (grades.grade > 7, students.name, null), grades.grade, students.marks 
+from students, grades
+where students.marks between grades.min_mark and grades.max_mark
+order by grades.grade desc, students.name asc;
+
+~Top Competitors
+select h.hacker_id, h.name
+from hackers as h
+join submissions as s on h.hacker_id = s.hacker_id
+JOIN Challenges c ON s.challenge_id = c.challenge_id
+JOIN Difficulty d ON c.difficulty_level = d.difficulty_level
+where s.score = d.score
+group by h.hacker_id, h.name
+having count(h.hacker_id) > 1
+order by count(h.hacker_id) desc, h.hacker_id asc;
+
+
+~Ollivander's Inventory
+select w.id, wp.age, w.coins_needed, w.power 
+from wands as w join wands_property as wp
+on w.code =wp.code 
+where wp.is_evil = 0 
+and w.coins_needed = (select min(w2.coins_needed) from wands as w2 
+                                 where w2.code = w.code and w2.power = w.power)
+order by power desc, age desc;
+
+
+
+~Challenges
+
+~Contest Leaderboard
+select h.hacker_id, name, sum(score) as total_score
+from
+hackers as h inner join
+/* find max_score*/
+(select hacker_id,  max(score) as score from submissions group by challenge_id, hacker_id)
+as max_score
+on h.hacker_id=max_score.hacker_id
+group by h.hacker_id, name
+
+/* don't accept hackers with total_score=0 */
+having total_score > 0
+
+/* finally order as required */
+order by total_score desc, h.hacker_id
+
+
+~Placements
+Write a query to output the names of those students whose best friends got offered a higher salary than them. 
+SELECT
+    d.name
+FROM
+    friends as a 
+    JOIN packages b ON a.id = b.id
+    JOIN packages c ON a.friend_id = c.id
+    JOIN students d ON d.id = a.id
+WHERE
+    c.salary > b.salary
+ORDER BY c.salary 
+
