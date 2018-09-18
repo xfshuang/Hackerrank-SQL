@@ -1,2 +1,2 @@
 # Hackerrank-SQL
-My hackerrank SQL challenge answers.
+My hackerrank SQL challenge solution(MYSQL.)
